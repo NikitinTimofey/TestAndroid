@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Поиск" />
+    <item
+        android:id="@+id/favourites"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="Избранное" />
+    <item android:title="Продать"
+        android:id="@+id/sell"
+        android:icon="@drawable/baseline_sell_24"/>
+    <item android:title="Прочее"
+        android:id="@+id/more"
+        android:icon="@drawable/baseline_more_horiz_24"/>
+
+</menu>
