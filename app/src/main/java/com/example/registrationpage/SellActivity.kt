@@ -35,10 +35,10 @@ class SellActivity : AppCompatActivity() {
                 brand = brand,
                 desc = desc,
                 text = desc,
-                price = price,
+                price = price.toInt(),
                 year = 2024, // Пример данных
                 transmission = "Автомат", // Пример данных
-                engineSize = 2.0,
+                engineSize = 2.0F,
                 fuel = "Бензин",
                 body = "Седан",
                 mileage = 0
