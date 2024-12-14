@@ -89,7 +89,7 @@ class SellActivity : AppCompatActivity() {
 
         if (requestCode == IMAGE_PICK_REQUEST && resultCode == RESULT_OK && data != null) {
             selectedImageUri = data.data
-            findViewById<ImageView>(R.id.imageView).setImageURI(selectedImageUri)
+            findViewById<ImageView>(R.id.imageViewSell).setImageURI(selectedImageUri)
         }
     }
 
