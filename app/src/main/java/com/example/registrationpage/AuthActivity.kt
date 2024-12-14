@@ -1,5 +1,6 @@
 package com.example.registrationpage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -39,6 +40,7 @@ class AuthActivity : AppCompatActivity() {
                     userPass.text.clear()
 
                     val intent = Intent(this, ItemsActivity::class.java)
+                    intent.putExtra("currentLogin", login)
                     startActivity(intent)
                 } else
                     Toast.makeText(this, "Пользователь $login НЕ авторизован", Toast.LENGTH_LONG).show()

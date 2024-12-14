@@ -1,40 +1,76 @@
 package com.example.registrationpage
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.registrationpage.databinding.ActivityItemsBinding
 
 class ItemsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityItemsBinding
+    private lateinit var itemsAdapter: ItemsAdapter // Добавлено поле для адаптера
+    private lateinit var recyclerView: RecyclerView // Это поле для RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_items)
+        binding = ActivityItemsBinding.inflate(layoutInflater)
+        enableEdgeToEdge() // Включение режима edge-to-edge
+        setContentView(binding.root)
+
+        // Инициализация RecyclerView
+        recyclerView = findViewById(R.id.ItemsList) // Находим RecyclerView по id
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Загружаем данные из базы
+        val dbHelper = DbHelper(this, null)
+        val itemsList = dbHelper.getAllItems()
+
+        // Инициализируем адаптер
+        itemsAdapter = ItemsAdapter(itemsList, this)
+        recyclerView.adapter = itemsAdapter
+
+        // Получаем текущий логин из Intent
+        val currentLogin = intent.getStringExtra("currentLogin")
+
+        // Устанавливаем слушатель для BottomNavigationView
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.search -> {}
+                R.id.favourites -> {
+                    Toast.makeText(this, "fav", Toast.LENGTH_LONG).show()
+                }
+                R.id.sell -> {
+                    val intent = Intent(this, SellActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.more -> {
+                    val intent = Intent(this, MoreActivity::class.java)
+                    intent.putExtra("currentLogin", currentLogin)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
+        // Настроим окно для отступов с учётом системных панелей
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
 
-
-        val itemsList: RecyclerView = findViewById(R.id.ItemsList)
-        val items = arrayListOf<Item>()
-
-        items.add(Item(1, "honda", "Honda", "Описание Honda", "Полный текст Honda", 500, 2023, "Автомат", 2.0f, "GASOLINE", "Седан", 10000))
-        items.add(Item(2, "bmw", "BMW", "Описание BMW", "Полный текст BMW", 600, 2022, "Механика", 3.0f, "DIESEL", "Хэтчбек", 50000))
-        items.add(Item(3, "audi", "Audi", "Описание Audi", "Полный текст Audi", 100, 2021, "Робот", 1.8f, "HYBRID", "Универсал", 25000))
-
-        itemsList.layoutManager = LinearLayoutManager(this)
-        itemsList.adapter = ItemsAdapter(items, this)
+    override fun onResume() {
+        super.onResume()
+        // Обновляем данные при возвращении на экран
+        val dbHelper = DbHelper(this, null)
+        val itemsList = dbHelper.getAllItems()
+        itemsAdapter.updateData(itemsList) // Обновление данных адаптера
     }
 }

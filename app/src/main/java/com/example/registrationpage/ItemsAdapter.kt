@@ -51,4 +51,10 @@ class ItemsAdapter(var items: List<Item>, var context: Context) : RecyclerView.A
             context.startActivity(intent)
         }
     }
+
+    fun updateData(newItems: List<Item>) {
+        this.items = newItems
+        notifyDataSetChanged()
+    }
+
 }
