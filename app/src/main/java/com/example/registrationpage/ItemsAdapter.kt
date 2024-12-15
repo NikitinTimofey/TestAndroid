@@ -1,5 +1,6 @@
 package com.example.registrationpage
 
+import android.content.ClipData.Item
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,7 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemsAdapter(var items: List<Item>, var context: Context) : RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
+class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var context: Context) : RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.item_list_image)
@@ -34,7 +35,7 @@ class ItemsAdapter(var items: List<Item>, var context: Context) : RecyclerView.A
         holder.desc.text = "${items[position].year},  ${items[position].transmission}, ${items[position].engineSize}, ${items[position].fuel}, ${items[position].body}, ${items[position].mileage}"
         holder.price.text = items[position].price.toString() + "$"
         val imageId = context.resources.getIdentifier(
-            items[position].image,
+            items[position].imageUrl,
             "drawable",
             context.packageName
         )

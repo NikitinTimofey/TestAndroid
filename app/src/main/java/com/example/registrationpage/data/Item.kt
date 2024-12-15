@@ -1,12 +1,9 @@
-package com.example.registrationpage
+package com.example.registrationpage.data
 
-import android.speech.tts.TextToSpeech.Engine
-
-class Item(
+data class Item(
     val id: Int,
-    val image: String,
+    val imageUrl: String,
     val brand: String,
-    val desc: String,
     val text:String,
     val price: Int,
     val year: Int,
@@ -15,5 +12,4 @@ class Item(
     val fuel: String,
     val body: String, // тип кузова
     val mileage: Int
-) {
-}
+){}

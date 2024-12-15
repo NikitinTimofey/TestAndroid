@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "210855689764",
+    "firebase_url": "https://cardealapp-72588-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cardealapp-72588",
+    "storage_bucket": "cardealapp-72588.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210855689764:android:cf7ae84bdc023890c822b1",
+        "android_client_info": {
+          "package_name": "com.example.registrationpage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4IP7eneEj6LPLRmTK7tKQUDwJ2d3ZoX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
