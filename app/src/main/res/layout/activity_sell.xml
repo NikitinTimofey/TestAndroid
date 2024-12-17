@@ -17,13 +17,56 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <EditText
-                android:id="@+id/edit_text_brand"
+            <Spinner
+                android:id="@+id/spinner_brand"
+                android:entries="@array/car_brands"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Марка"
-                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_engine_size"
+                android:entries="@array/engine_sizes"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_fuel"
+                android:entries="@array/fuel_types"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_body"
+                android:entries="@array/body_types"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_transmission"
+                android:entries="@array/transmission_types"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:minHeight="48dp"
                 android:paddingStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -41,25 +84,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
+
             <EditText
-                android:id="@+id/edit_text_year"
+                android:id="@+id/edit_discription"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Год выпуска"
-                android:inputType="number"
+                android:hint="Описание"
+                android:inputType="text"
                 android:minHeight="48dp"
                 android:paddingStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/edit_text_transmission"
+                android:id="@+id/edit_year"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Тип трансмиссии"
-                android:inputType="text"
+                android:hint="Год"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/edit_mileage"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Пробег"
+                android:inputType="numberDecimal"
                 android:minHeight="48dp"
                 android:paddingStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"

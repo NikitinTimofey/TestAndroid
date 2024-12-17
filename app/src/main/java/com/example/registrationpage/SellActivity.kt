@@ -20,24 +20,31 @@ class SellActivity : AppCompatActivity() {
 
         // Обработка нажатия кнопки "Добавить"
         binding.btnAddItem.setOnClickListener {
-            val brand = binding.editTextBrand.text.toString()
-            val year = binding.editTextYear.text.toString().toIntOrNull() ?: 2000
-            val price = binding.editTextPrice.text.toString().toIntOrNull() ?: 0
-            val description = binding.editTextTransmission.text.toString()
+            val brand = binding.spinnerBrand.selectedItem.toString()
+            val fuel = binding.spinnerFuel.selectedItem.toString()
+            val body = binding.spinnerBody.selectedItem.toString()
+            val engineSize = binding.spinnerEngineSize.selectedItem.toString().toFloatOrNull()
+            val transmission = binding.spinnerTransmission.selectedItem.toString()
+            val year = binding.editYear.text.toString().toIntOrNull()
+            val price = binding.editTextPrice.text.toString().toIntOrNull()
+            val mileage = binding.editMileage.text.toString().toIntOrNull()
+            val description  = binding.editDiscription.text.toString()
 
+            val textFields = listOf(brand, description, transmission, fuel, body)
+            val numFields = listOf(year, price, engineSize, mileage) //
 
-            if (brand.isNotEmpty()) {
+            if (textFields.all { it.isNotEmpty() } && numFields.all { it != null && it != 0 }) {
                 // Создаем объект для Firestore
                 val newItem = hashMapOf(
                     "brand" to brand,
                     "year" to year,
                     "price" to price,
                     "description" to description,
-                    "transmission" to "manual", // Дополнительные поля
-                    "engineSize" to 1.6,
-                    "fuel" to "gas",
-                    "body" to "sedan",
-                    "mileage" to 0
+                    "transmission" to transmission,
+                    "engineSize" to engineSize,
+                    "fuel" to fuel,
+                    "body" to body,
+                    "mileage" to mileage
                 )
 
                 // Добавляем в Firestore
