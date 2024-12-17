@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:minHeight="48dp"
-                android:paddingStart="16dp"
+                android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -120,6 +120,22 @@
                 android:paddingStart="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_view_item"
+                android:layout_width="370dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop" />
+
+            <Button
+                android:id="@+id/btn_select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Выбор фото" />
 
             <Button
                 android:id="@+id/btn_add_item"

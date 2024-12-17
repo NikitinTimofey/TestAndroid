@@ -7,16 +7,31 @@ import com.example.registrationpage.databinding.ActivitySellBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import java.io.ByteArrayOutputStream
+
 
 class SellActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySellBinding
     private val firestore = FirebaseFirestore.getInstance()
+    private var encodedImage: String? = null // Для хранения base64 строки
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySellBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Кнопка выбора изображения
+        binding.btnSelectImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, 100)
+        }
 
         // Обработка нажатия кнопки "Добавить"
         binding.btnAddItem.setOnClickListener {
@@ -33,7 +48,7 @@ class SellActivity : AppCompatActivity() {
             val textFields = listOf(brand, description, transmission, fuel, body)
             val numFields = listOf(year, price, engineSize, mileage) //
 
-            if (textFields.all { it.isNotEmpty() } && numFields.all { it != null && it != 0 }) {
+            if (textFields.all { it.isNotEmpty() } && numFields.all { it != null && it != 0 } && encodedImage != null) {
                 // Создаем объект для Firestore
                 val newItem = hashMapOf(
                     "brand" to brand,
@@ -44,7 +59,8 @@ class SellActivity : AppCompatActivity() {
                     "engineSize" to engineSize,
                     "fuel" to fuel,
                     "body" to body,
-                    "mileage" to mileage
+                    "mileage" to mileage,
+                    "imageBase64" to encodedImage // Добавляем base64 изображение
                 )
 
                 // Добавляем в Firestore
@@ -60,6 +76,22 @@ class SellActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Заполните все поля!", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            val uri = data?.data
+            val inputStream = contentResolver.openInputStream(uri!!)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            binding.imageViewItem.setImageBitmap(bitmap)
+
+            // Конвертация в base64
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream) // Сжатие
+            val byteArray = outputStream.toByteArray()
+            encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT)
         }
     }
 }

@@ -10,6 +10,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import java.io.ByteArrayOutputStream
 
 class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var context: Context) : RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
 
@@ -34,13 +39,16 @@ class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var 
         holder.title.text = items[position].brand
         holder.desc.text = "${items[position].year},  ${items[position].transmission}, ${items[position].engineSize}, ${items[position].fuel}, ${items[position].body}, ${items[position].mileage}"
         holder.price.text = items[position].price.toString() + "$"
-        val imageId = context.resources.getIdentifier(
-            items[position].imageUrl,
-            "drawable",
-            context.packageName
-        )
+        // Декодирование base64 в Bitmap
+        val base64String = items[position].imageUrl
+        if (base64String.isNotEmpty()) {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+            holder.image.setImageBitmap(bitmap)
+        } else {
+            holder.image.setImageResource(R.drawable.placeholder) // Плейсхолдер
+        }
 
-        holder.image.setImageResource(imageId)
 
         holder.btn.setOnClickListener {
             val intent = Intent(context, ItemActivity::class.java)

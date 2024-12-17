@@ -53,7 +53,7 @@ class ItemsActivity : AppCompatActivity() {
                 for (document in result) {
                     val item = Item(
                         id = document.id.hashCode(), // Генерация id
-                        imageUrl = "", // Здесь можно использовать путь к изображению
+                        imageUrl = document.getString("imageBase64") ?: "", // Здесь можно использовать путь к изображению
                         brand = document.getString("brand") ?: "Unknown",
                         text = document.getString("description") ?: "No description",
                         price = document.getLong("price")?.toInt() ?: 0,
