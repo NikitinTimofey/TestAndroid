@@ -14,9 +14,14 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 
-class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var context: Context) : RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
+class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item>, var context: Context) : RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
+
+    private val firestore = FirebaseFirestore.getInstance()
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.item_list_image)
@@ -24,6 +29,7 @@ class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var 
         val desc: TextView = view.findViewById(R.id.item_list_desc)
         val price: TextView = view.findViewById(R.id.item_list_price)
         val btn: Button = view.findViewById(R.id.item_list_button)
+        val buttonDelete: Button = view.findViewById(R.id.button_delete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -59,5 +65,27 @@ class ItemsAdapter(var items: List<com.example.registrationpage.data.Item>, var 
 
             context.startActivity(intent)
         }
+
+        holder.buttonDelete.setOnClickListener {
+            val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+
+            if (currentUser == items[position].userId) { // Проверяем userId
+                firestore.collection("Items").document(items[position].documentId)
+                    .delete()
+                    .addOnSuccessListener {
+                        items.removeAt(position)
+                        notifyItemRemoved(position)
+                        Toast.makeText(context, "Объявление удалено!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "Ошибка: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(context, "Вы можете удалять только свои объявления", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
+
+
 }

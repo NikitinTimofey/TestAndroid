@@ -2,6 +2,8 @@ package com.example.registrationpage.data
 
 data class Item(
     val id: Int,
+    val documentId: String,
+    val userId: String,
     val imageUrl: String,
     val brand: String,
     val text:String,

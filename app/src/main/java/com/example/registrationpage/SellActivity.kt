@@ -12,6 +12,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import com.google.firebase.auth.FirebaseAuth
 import java.io.ByteArrayOutputStream
 
 
@@ -20,6 +21,7 @@ class SellActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySellBinding
     private val firestore = FirebaseFirestore.getInstance()
     private var encodedImage: String? = null // Для хранения base64 строки
+    val userId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +62,8 @@ class SellActivity : AppCompatActivity() {
                     "fuel" to fuel,
                     "body" to body,
                     "mileage" to mileage,
-                    "imageBase64" to encodedImage // Добавляем base64 изображение
+                    "imageBase64" to encodedImage, // Добавляем base64 изображение
+                    "userId" to userId
                 )
 
                 // Добавляем в Firestore

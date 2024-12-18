@@ -53,6 +53,7 @@ class ItemsActivity : AppCompatActivity() {
                 for (document in result) {
                     val item = Item(
                         id = document.id.hashCode(), // Генерация id
+                        documentId = document.id,
                         imageUrl = document.getString("imageBase64") ?: "", // Здесь можно использовать путь к изображению
                         brand = document.getString("brand") ?: "Unknown",
                         text = document.getString("description") ?: "No description",
@@ -62,7 +63,8 @@ class ItemsActivity : AppCompatActivity() {
                         engineSize = document.getDouble("engineSize")?.toFloat() ?: 0f,
                         fuel = document.getString("fuel") ?: "Unknown",
                         body = document.getString("body") ?: "Unknown",
-                        mileage = document.getLong("mileage")?.toInt() ?: 0
+                        mileage = document.getLong("mileage")?.toInt() ?: 0,
+                        userId = document.getString("userId") ?: ""
                     )
                     items.add(item)
                 }
