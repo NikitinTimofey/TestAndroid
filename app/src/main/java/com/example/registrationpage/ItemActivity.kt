@@ -42,7 +42,7 @@ class ItemActivity : AppCompatActivity() {
                     val fuel = document.getString("fuel") ?: "Unknown"
                     val body = document.getString("body") ?: "Unknown"
                     val mileage = document.getLong("mileage")?.toInt() ?: 0
-                    val imageUrl = document.getString("imageUrl") ?: ""
+                    val imageUrl = document.getString("imageBase64") ?: ""
                     val userId = document.getString("userId") ?: ""
 
                     // Отображаем данные в интерфейсе
