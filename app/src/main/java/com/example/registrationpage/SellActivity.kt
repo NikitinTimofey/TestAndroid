@@ -45,9 +45,9 @@ class SellActivity : AppCompatActivity() {
             val year = binding.editYear.text.toString().toIntOrNull()
             val price = binding.editTextPrice.text.toString().toIntOrNull()
             val mileage = binding.editMileage.text.toString().toIntOrNull()
-            val description  = binding.editDiscription.text.toString()
+            val contactInfo  = binding.editContactInfo.text.toString()
 
-            val textFields = listOf(brand, description, transmission, fuel, body)
+            val textFields = listOf(brand, contactInfo, transmission, fuel, body)
             val numFields = listOf(year, price, engineSize, mileage) //
 
             if (textFields.all { it.isNotEmpty() } && numFields.all { it != null && it != 0 } && encodedImage != null) {
@@ -56,7 +56,7 @@ class SellActivity : AppCompatActivity() {
                     "brand" to brand,
                     "year" to year,
                     "price" to price,
-                    "description" to description,
+                    "contactInfo" to contactInfo,
                     "transmission" to transmission,
                     "engineSize" to engineSize,
                     "fuel" to fuel,

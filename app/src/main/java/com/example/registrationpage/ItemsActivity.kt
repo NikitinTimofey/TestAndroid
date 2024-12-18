@@ -30,9 +30,6 @@ class ItemsActivity : AppCompatActivity() {
         // Обработка навигации
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.favourites -> {
-                    startActivity(Intent(this, FavActivity::class.java))
-                }
                 R.id.sell -> {
                     startActivity(Intent(this, SellActivity::class.java))
                 }
@@ -56,7 +53,7 @@ class ItemsActivity : AppCompatActivity() {
                         documentId = document.id,
                         imageUrl = document.getString("imageBase64") ?: "", // Здесь можно использовать путь к изображению
                         brand = document.getString("brand") ?: "Unknown",
-                        text = document.getString("description") ?: "No description",
+                        contactInfo = document.getString("description") ?: "No description",
                         price = document.getLong("price")?.toInt() ?: 0,
                         year = document.getLong("year")?.toInt() ?: 0,
                         transmission = document.getString("transmission") ?: "Unknown",

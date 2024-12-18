@@ -14,7 +14,7 @@ class MoreActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoreBinding
     private lateinit var adapter: UserItemsAdapter
-    private val userItems = mutableListOf<Item>() // Объявления текущего пользователя
+    private val userItems = mutableListOf<Item>()
     private val firestore = FirebaseFirestore.getInstance()
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -23,21 +23,17 @@ class MoreActivity : AppCompatActivity() {
         binding = ActivityMoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Установка email пользователя
         val userEmail = FirebaseAuth.getInstance().currentUser?.email
         binding.profileEmail.text = userEmail ?: "Email не найден"
 
-        // Кнопка выхода
         binding.logoutButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
 
-        // Настройка RecyclerView
         setupRecyclerView()
 
-        // Загрузка объявлений
         loadUserItems()
     }
 
@@ -65,7 +61,7 @@ class MoreActivity : AppCompatActivity() {
                         id = document.id.hashCode(),
                         imageUrl = document.getString("imageBase64") ?: "",
                         brand = document.getString("brand") ?: "Unknown",
-                        text = document.getString("description") ?: "No description",
+                        contactInfo = document.getString("description") ?: "No description",
                         price = document.getLong("price")?.toInt() ?: 0,
                         year = document.getLong("year")?.toInt() ?: 0,
                         transmission = document.getString("transmission") ?: "Unknown",
@@ -89,7 +85,7 @@ class MoreActivity : AppCompatActivity() {
         firestore.collection("Items").document(item.documentId)
             .delete()
             .addOnSuccessListener {
-                userItems.removeAt(position) // Удаляем элемент из списка
+                userItems.removeAt(position)
                 adapter.notifyItemRemoved(position)
                 Toast.makeText(this, "Объявление удалено", Toast.LENGTH_SHORT).show()
             }

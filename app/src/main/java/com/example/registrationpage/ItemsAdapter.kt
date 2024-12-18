@@ -43,7 +43,7 @@ class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.title.text = items[position].brand
-        holder.desc.text = "${items[position].year},  ${items[position].transmission}, ${items[position].engineSize}, ${items[position].fuel}, ${items[position].body}, ${items[position].mileage}"
+        holder.desc.text = "${items[position].year} г.,  ${items[position].transmission}, ${items[position].engineSize}, ${items[position].fuel}, ${items[position].body}, ${items[position].mileage } км"
         holder.price.text = items[position].price.toString() + "$"
         // Декодирование base64 в Bitmap
         val base64String = items[position].imageUrl

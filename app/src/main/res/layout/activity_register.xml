@@ -63,7 +63,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
         android:fontFamily="@font/inter_medium"
-        android:text="Авторизоваться"
+        android:text="Войти в аккаунт"
         android:textColor="#fdfdfd"
         android:textSize="17sp" />
 

@@ -86,18 +86,6 @@
 
 
             <EditText
-                android:id="@+id/edit_discription"
-                android:layout_width="370dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="Описание"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:paddingStart="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <EditText
                 android:id="@+id/edit_year"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
@@ -129,6 +117,18 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop" />
+
+            <EditText
+                android:id="@+id/edit_contact_info"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Контактная информация"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/btn_select_image"

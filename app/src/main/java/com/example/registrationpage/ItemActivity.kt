@@ -34,7 +34,7 @@ class ItemActivity : AppCompatActivity() {
                 if (document.exists()) {
                     // Отображаем данные об автомобиле
                     val brand = document.getString("brand") ?: "Unknown"
-                    val text = document.getString("text") ?: "No description"
+                    val contactInfo = document.getString("contactInfo") ?: "No contact information"
                     val price = document.getLong("price")?.toInt() ?: 0
                     val year = document.getLong("year")?.toInt() ?: 0
                     val transmission = document.getString("transmission") ?: "Unknown"
@@ -47,7 +47,7 @@ class ItemActivity : AppCompatActivity() {
 
                     // Отображаем данные в интерфейсе
                     binding.itemTitle.text = brand
-                    binding.itemDescription.text = text
+                    binding.itemContactInfo.text = contactInfo
                     binding.itemPrice.text = "$price $"
                     binding.itemYear.text = "Год выпуска: $year"
                     binding.itemTransmission.text = "Коробка передач: $transmission"

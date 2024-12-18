@@ -30,15 +30,16 @@
             android:paddingTop="16dp" />
 
         <!-- Описание автомобиля -->
-        <TextView
-            android:id="@+id/itemDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Описание автомобиля"
-            android:textSize="16sp"
-            android:paddingTop="8dp" />
 
         <!-- Цена -->
+        <TextView
+            android:id="@+id/itemContactInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="Контактная информация"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/itemPrice"
             android:layout_width="match_parent"

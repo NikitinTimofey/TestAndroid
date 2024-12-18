@@ -21,7 +21,7 @@ class UserItemsAdapter(
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.item_list_image)
         val title: TextView = view.findViewById(R.id.item_list_title)
-        val desc: TextView = view.findViewById(R.id.item_list_desc)
+        val contactInfo: TextView = view.findViewById(R.id.item_list_desc)
         val price: TextView = view.findViewById(R.id.item_list_price)
         val buttonDelete: Button = view.findViewById(R.id.button_delete)
     }
@@ -36,7 +36,7 @@ class UserItemsAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = userItems[position]
         holder.title.text = item.brand
-        holder.desc.text = item.text
+        holder.contactInfo.text = item.contactInfo
         holder.price.text = "${item.price} $"
 
         if (item.imageUrl.isNotEmpty()) {
