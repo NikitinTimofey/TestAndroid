@@ -27,7 +27,7 @@ class ItemsActivity : AppCompatActivity() {
         // Загрузка данных из Firebase
         loadItemsFromFirestore()
 
-        // Обработка нижней навигации
+        // Обработка навигации
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.favourites -> {
