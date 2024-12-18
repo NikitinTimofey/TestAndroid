@@ -58,11 +58,7 @@ class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item
 
         holder.btn.setOnClickListener {
             val intent = Intent(context, ItemActivity::class.java)
-
-            intent.putExtra("itemTitle", items[position].brand)
-            intent.putExtra("itemText", items[position].text)
-            // Можно будет добавить цену
-
+            intent.putExtra("itemDocumentId", items[position].documentId)
             context.startActivity(intent)
         }
 
