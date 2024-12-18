@@ -24,10 +24,8 @@ class ItemsActivity : AppCompatActivity() {
         binding.ItemsList.layoutManager = LinearLayoutManager(this)
         binding.ItemsList.adapter = adapter
 
-        // Загрузка данных из Firebase
         loadItemsFromFirestore()
 
-        // Обработка навигации
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.sell -> {
@@ -46,12 +44,12 @@ class ItemsActivity : AppCompatActivity() {
         firestore.collection("Items")
             .get()
             .addOnSuccessListener { result ->
-                items.clear() // Очищаем старые данные
+                items.clear()
                 for (document in result) {
                     val item = Item(
-                        id = document.id.hashCode(), // Генерация id
+                        id = document.id.hashCode(),
                         documentId = document.id,
-                        imageUrl = document.getString("imageBase64") ?: "", // Здесь можно использовать путь к изображению
+                        imageUrl = document.getString("imageBase64") ?: "",
                         brand = document.getString("brand") ?: "Unknown",
                         contactInfo = document.getString("description") ?: "No description",
                         price = document.getLong("price")?.toInt() ?: 0,
@@ -65,7 +63,7 @@ class ItemsActivity : AppCompatActivity() {
                     )
                     items.add(item)
                 }
-                adapter.notifyDataSetChanged() // Обновляем RecyclerView
+                adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
                 println("Ошибка при загрузке данных: ${e.message}")
@@ -74,6 +72,6 @@ class ItemsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadItemsFromFirestore() // Обновляем данные при возврате
+        loadItemsFromFirestore()
     }
 }

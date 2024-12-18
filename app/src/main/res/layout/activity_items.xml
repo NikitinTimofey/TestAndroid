@@ -9,19 +9,6 @@
     android:orientation="vertical"
     tools:context=".ItemsActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:fontFamily="@font/inter_bold"-->
-<!--        android:text="Товары"-->
-<!--        android:textColor="#fdfdfd"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textStyle="bold"-->
-<!--        tools:layout_editor_absoluteX="133dp"-->
-<!--        tools:layout_editor_absoluteY="16dp" />-->
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"

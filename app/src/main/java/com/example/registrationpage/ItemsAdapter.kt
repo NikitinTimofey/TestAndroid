@@ -45,16 +45,15 @@ class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item
         holder.title.text = items[position].brand
         holder.desc.text = "${items[position].year} г.,  ${items[position].transmission}, ${items[position].engineSize}, ${items[position].fuel}, ${items[position].body}, ${items[position].mileage } км"
         holder.price.text = items[position].price.toString() + "$"
-        // Декодирование base64 в Bitmap
+
         val base64String = items[position].imageUrl
         if (base64String.isNotEmpty()) {
             val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
             holder.image.setImageBitmap(bitmap)
         } else {
-            holder.image.setImageResource(R.drawable.placeholder) // Плейсхолдер
+            holder.image.setImageResource(R.drawable.placeholder)
         }
-
 
         holder.btn.setOnClickListener {
             val intent = Intent(context, ItemActivity::class.java)
@@ -65,7 +64,7 @@ class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item
         holder.buttonDelete.setOnClickListener {
             val currentUser = FirebaseAuth.getInstance().currentUser?.uid
 
-            if (currentUser == items[position].userId) { // Проверяем userId
+            if (currentUser == items[position].userId) {
                 firestore.collection("Items").document(items[position].documentId)
                     .delete()
                     .addOnSuccessListener {
@@ -80,8 +79,5 @@ class ItemsAdapter(var items: MutableList<com.example.registrationpage.data.Item
                 Toast.makeText(context, "Вы можете удалять только свои объявления", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
-
-
 }

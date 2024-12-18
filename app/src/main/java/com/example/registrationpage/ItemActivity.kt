@@ -27,7 +27,7 @@ class ItemActivity : AppCompatActivity() {
     }
 
     private fun loadItemData(documentId: String) {
-        // Загружаем данные элемента из Firestore
+
         firestore.collection("Items").document(documentId)
             .get()
             .addOnSuccessListener { document ->
