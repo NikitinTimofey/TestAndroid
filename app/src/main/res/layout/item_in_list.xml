@@ -54,4 +54,13 @@
             android:backgroundTint="#7361CE"
             android:layout_height="wrap_content"
             android:text="Посмотреть" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="#7361CE"
+            android:text="Удалить" />
 </LinearLayout>
