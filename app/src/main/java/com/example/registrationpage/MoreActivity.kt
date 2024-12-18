@@ -61,7 +61,7 @@ class MoreActivity : AppCompatActivity() {
                         id = document.id.hashCode(),
                         imageUrl = document.getString("imageBase64") ?: "",
                         brand = document.getString("brand") ?: "Unknown",
-                        contactInfo = document.getString("description") ?: "No description",
+                        contactInfo = document.getString("contactInfo") ?: "No contact info",
                         price = document.getLong("price")?.toInt() ?: 0,
                         year = document.getLong("year")?.toInt() ?: 0,
                         transmission = document.getString("transmission") ?: "Unknown",
